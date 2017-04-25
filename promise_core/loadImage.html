@@ -23,15 +23,16 @@
     function show(){alert("body is loaded");};
     window.onload=show;
     console.log(img);
-    document.body.appendChild(img)
+    document.body.appendChild(img);
 
 
 
     // 异步promise的图片加载
-    let newUrl = 'http://192.168.8.22:8001/images/trustTop.png';
-    loadImage(newUrl).then(function (res) {
-
+    let newUrl = 'http://192.168.8.22:8001/images/trustToppng';
+    loadImage(newUrl).then(function (res) { // 这里的then相当于重写loadImage函数里的onload 函数
         document.body.appendChild(res);
+    }).catch(function (event) { //这里的catch相当于重写loadImage函数里的onerror 函数
+        console.log('load faild')
     })
 
 </script>
