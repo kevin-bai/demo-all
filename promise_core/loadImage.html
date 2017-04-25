@@ -13,10 +13,10 @@
     //普通的图片加载
     var img = new Image();
     img.onload = function () {
-        console.log('image onload');
+        console.log('image onload ---- normal');
     };
     img.onerror = function () {
-        console.log('img error')
+        console.log('img error ----- normal')
     };
     img.src= 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png';
 
@@ -28,10 +28,11 @@
 
 
     // 异步promise的图片加载
-    let newUrl = 'http://192.168.8.22:8001/images/trustToppng';
-    loadImage(newUrl).then(function (res) { // 这里的then相当于重写loadImage函数里的onload 函数
+    let newUrl = 'http://192.168.8.22:8001/images/trustTop.png';
+    loadImage(newUrl).then(function (res) { // 这里的then执行需要的业务逻辑,是在promise对象状态从pending变成resolve后
+        console.log('todo something');
         document.body.appendChild(res);
-    }).catch(function (event) { //这里的catch相当于重写loadImage函数里的onerror 函数
+    }).catch(function (event) { // 同上状态变成reject
         console.log('load faild')
     })
 

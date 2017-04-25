@@ -4,8 +4,12 @@
 let loadImage = (url)=>{
     return new Promise((resolve,reject)=>{
         var image = new Image();
+        // image.onload = ()=>{
+        //     console.log('onload ---- loadImage.js');
+        //     resolve(image);
+        // };
         image.onload = ()=>{
-            console.log('onload ---- loadImage.js');
+            console.log('onload ---- promise');
             resolve(image);
         };
         image.onerror = ()=>{
