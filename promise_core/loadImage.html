@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+
+<script src="loadImage.js"></script>
+<script>
+
+    //普通的图片加载
+    var img = new Image();
+    img.onload = function () {
+        console.log('image onload');
+    };
+    img.onerror = function () {
+        console.log('img error')
+    };
+    img.src= 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png';
+
+    function show(){alert("body is loaded");};
+    window.onload=show;
+    console.log(img);
+    document.body.appendChild(img)
+
+
+
+    // 异步promise的图片加载
+    let newUrl = 'http://192.168.8.22:8001/images/trustTop.png';
+    loadImage(newUrl).then(function (res) {
+
+        document.body.appendChild(res);
+    })
+
+</script>
+</body>
+</html>
