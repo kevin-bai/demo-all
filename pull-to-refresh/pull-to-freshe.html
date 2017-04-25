@@ -63,7 +63,7 @@
     var pullDown,pullUp;
     var spinner;
     function positionJudge(){
-//        console.log(this.y);
+//        console.log(this);
         if(this.y>40){    //判断下拉
             pullDown.innerHTML = "放开刷新页面";
             pullDownFlag = 1;
@@ -136,9 +136,6 @@
     function updatePosition(){
         pullDown.innerHTML = this.y>>0;
     }
-    document.addEventListener('touchmove', function (e) {
-        e.preventDefault();
-    }, false);
     document.addEventListener('touchmove', function (e) {
         e.preventDefault();
     }, false);
