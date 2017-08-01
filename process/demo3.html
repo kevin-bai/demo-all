@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>图像进度条</title>
+    <title>顶部进度条</title>
     <script src="./js/jquery1.8.3.js"></script>
 
     <style>
@@ -17,14 +17,13 @@
         }
         .pic{
             position: absolute;
-            background: url("./images/loading.gif");
-            width: 64px;
-            height: 64px;
+            width: 0%;
+            height: 5px;
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
-            margin: auto;
+            background: #c81623;
         }
     </style>
 </head>
@@ -34,16 +33,48 @@
     <div class="pic"></div>
 </div>
 
-<img src="http://img05.tooopen.com/images/20150507/tooopen_sy_122559172382.jpg" alt="">
-<img src="http://pic1.win4000.com/wallpaper/5/53659e93c01c2.jpg" alt="">
-<img src="http://pic1.win4000.com/wallpaper/5/53659ea296d69.jpg" alt="">
-<img src="http://pic1.win4000.com/wallpaper/5/53659ed55a0bc.jpg" alt="">
+<script>
+    $('.loading .pic').animate({width:"10%"},100)
+</script>
 
+<header>
+    <img src="http://img05.tooopen.com/images/20150507/tooopen_sy_122559172382.jpg" alt="">
+</header>
+
+<script>
+    $('.loading .pic').animate({width:"30%"},100)
+</script>
+
+<section class="news">
+    <img src="http://pic1.win4000.com/wallpaper/5/53659e93c01c2.jpg" alt="">
+</section>
+
+<script>
+    $('.loading .pic').animate({width:"50%"},100)
+</script>
+
+<section class="about">
+    <img src="http://pic1.win4000.com/wallpaper/5/53659ea296d69.jpg" alt="">
+</section>
+
+<script>
+    $('.loading .pic').animate({width:"70%"},100)
+</script>
+
+<footer>
+    <img src="http://pic1.win4000.com/wallpaper/5/53659ed55a0bc.jpg" alt="">
+</footer>
+
+<script>
+    $('.loading .pic').animate({width:"100%"},100,function () {
+        $('.loading').fadeOut();
+    })
+</script>
 <script>
     document.onreadystatechange = doSomething;
     function doSomething() {
         if(document.readyState == "complete"){
-            $('.loading').fadeOut();
+//            $('.loading').fadeOut();
         }
     }
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>图像进度条</title>
+    <title>实时获取数据的进度条</title>
     <script src="./js/jquery1.8.3.js"></script>
 
     <style>
@@ -17,36 +17,75 @@
         }
         .pic{
             position: absolute;
-            background: url("./images/loading.gif");
-            width: 64px;
-            height: 64px;
+            width: 100px;
+            height: 100px;
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
             margin: auto;
+            /*border: 1px solid #005ea7;*/
+            text-align: center;
+        }
+        .pic span{
+            display: block;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            /*background: #ccc;*/
+            box-shadow: 0 3px 0 #666;
+            animation: rotate 1s infinite linear;
+        }
+        @keyframes rotate {
+            0%{transform: rotate(0deg)}
+            100%{transform: rotate(360deg)}
+        }
+        .pic b{
+            text-align: center;
+            line-height: 100px;
         }
     </style>
 </head>
 <body>
 
 <div class="loading">
-    <div class="pic"></div>
+    <div class="pic">
+        <span></span>
+        <b>0%</b>
+    </div>
 </div>
 
 <img src="http://img05.tooopen.com/images/20150507/tooopen_sy_122559172382.jpg" alt="">
 <img src="http://pic1.win4000.com/wallpaper/5/53659e93c01c2.jpg" alt="">
 <img src="http://pic1.win4000.com/wallpaper/5/53659ea296d69.jpg" alt="">
 <img src="http://pic1.win4000.com/wallpaper/5/53659ed55a0bc.jpg" alt="">
+<img src="http://qq.yh31.com/tp/zr/zr185.gif" alt="">
 
 <script>
-    document.onreadystatechange = doSomething;
-    function doSomething() {
-        if(document.readyState == "complete"){
-            $('.loading').fadeOut();
-        }
-    }
+$(function () {
+    var img = $("img");
+    var num=0;
+    img.each(function (i) {
+        var oImg = new Image();
 
+        oImg.onload=function () {
+            num++;
+//          oImg.src = img[i].src;
+            oImg.onload = null;//这是为了有些gif图片可能会重复请求onload事件，所以这里要这样写
+
+            $('.pic b').html(parseInt(num/$("img").size()*100)+"%");
+            //如果 num == i，有缓存问题可能导致100%后就不动了，走不进这个function，就没有fadeout
+            if(num >= i){
+                $('.pic b').html("100%");
+                $('.loading').fadeOut();
+            }
+        };
+        oImg.src = img[i].src;//这src地址写在最下面，是为了ie兼容性的一个bug。逻辑上应该写在function第二行
+    })
+})
 
 </script>
 </body>
